@@ -21,6 +21,7 @@ const links = [
 ];
 
 export default function NavLinks() {
+  // "use cache";
   const pathname = usePathname();
   return (
     <>
