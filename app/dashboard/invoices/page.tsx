@@ -1,4 +1,3 @@
-"use cache";
 import Pagination from "@/app/ui/invoices/pagination";
 import Search from "@/app/ui/search";
 import Table from "@/app/ui/invoices/table";
@@ -6,6 +5,7 @@ import { CreateInvoice } from "@/app/ui/invoices/buttons";
 import { lusitana } from "@/app/ui/fonts";
 import { InvoicesTableSkeleton } from "@/app/ui/skeletons";
 import { Suspense } from "react";
+import { fetchInvoicesPages } from "@/app/lib/data";
 
 export default async function Page(props: {
   searchParams?: Promise<{
@@ -13,11 +13,12 @@ export default async function Page(props: {
     page?: string;
   }>;
 }) {
-  console.warn("params 👇");
-  console.dir(props);
+  "use cache";
   const searchParams = await props.searchParams,
     query = searchParams?.query || "",
-    currentPage = Number(searchParams?.page) || 1;
+    currentPage = Number(searchParams?.page) || 1,
+    totalPages = await fetchInvoicesPages(query);
+  console.warn(searchParams);
 
   return (
     <div className="w-full">
@@ -32,8 +33,18 @@ export default async function Page(props: {
         <Table query={query} currentPage={currentPage} />
       </Suspense>
       <div className="mt-5 flex w-full justify-center">
-        {/* <Pagination totalPages={totalPages} /> */}
+        <Pagination totalPages={totalPages} />
       </div>
     </div>
   );
 }
+
+// async function saveCacheKey(key: string, value: any) {
+//     try {
+//         // Your caching logic here
+//         await cache.set(key, value);
+//     } catch (error) {
+//         console.error('Error while saving cache key:', error);
+//         // Retry logic or fallback mechanism
+//     }
+// }
