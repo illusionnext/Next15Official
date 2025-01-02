@@ -32,6 +32,7 @@ export async function fetchRevenue() {
 
 // Instead of sorting through the latest invoices in-memory, you can use an SQL query to fetch only the last 5 invoices.
 export async function fetchLatestInvoices() {
+  "use cache";
   try {
     const data = await sql<LatestInvoiceRaw>`
       SELECT invoices.amount, customers.name, customers.image_url, customers.email, invoices.id
