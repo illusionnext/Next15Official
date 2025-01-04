@@ -7,8 +7,6 @@ const nextConfig: NextConfig = {
     authInterrupts: true,
     dynamicIO: true,
   },
-  // Automatically bundle external packages in the Pages Router:
-  bundlePagesRouterDependencies: true,
 };
 
 export default nextConfig;
