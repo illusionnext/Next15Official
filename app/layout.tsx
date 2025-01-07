@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/app/ui/global.css";
 import React from "react";
@@ -14,8 +14,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Next Auth",
-  description: "Next.js Authentication",
+  title: {
+    template: "%s | Acme Dashboard", // %s is replaced with the page title
+    default: "Acme Dashboard",
+  },
+  description: "The official Next.js Learn Dashboard built with App Router.",
+  metadataBase: new URL("https://next-learn-dashboard.vercel.sh"),
 };
 
 export default function RootLayout({
