@@ -18,7 +18,6 @@ export default async function Page(props: {
     page?: string;
   }>;
 }) {
-  "use cache";
   const searchParams = await props.searchParams,
     query = searchParams?.query || "",
     currentPage = Number(searchParams?.page) || 1,
