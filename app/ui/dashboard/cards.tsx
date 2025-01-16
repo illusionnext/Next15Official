@@ -22,7 +22,6 @@ export default async function CardWrapper() {
     totalPendingInvoices,
   } = await fetchCardData();
 
-  // "use cache";
   return (
     <>
       {/* NOTE: Uncomment this code in Chapter 9 */}
